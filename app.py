@@ -55,7 +55,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://tansubaktiran:Avz9p9&9Dgsu_099@193.111.73.99/tansubaktiran"
 
 #Secret key
-app.config['SECRET_KEY'] = "MYSUPERKEY"
+app.config['SECRET_KEY'] = "xxx changed for security purposes"
 #Initialize the adatabase
 db = SQLAlchemy(app)
 
