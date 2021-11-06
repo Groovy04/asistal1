@@ -1,0 +1,38 @@
+<style>
+    .error {
+    color: red;
+    border: 2px solid red;
+}
+    .success {
+    color: limegreen;
+    border: 2px solid limegreen;
+}
+
+</style>
+
+{% extends "base.html"%}
+
+{%block content%}
+
+</br></br></br></br>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% for category, message in messages %}
+    <div class="{{ category }}">{{ message }}</div>
+  {% endfor %}
+{% endwith %}
+</br>
+<h4>Welcome to Asistal - Assist System</h4>
+<h6><i>Designed For Better Performance</i></h6>
+</br>
+<p>This system is designed for assisting the better performance of Asistal</p>
+
+<p>For accessing the entry screens, you will need to login with your password.</p>
+<p><b>Please use login link for entering the system.</b></p>
+
+</br>
+<p>Wish you a nice user experience.</p>
+
+<p>Stay healthy!!!</p>
+
+{%endblock%} 

@@ -1,0 +1,49 @@
+<style>
+        .error {
+        color: red;
+        border: 2px solid red;
+}
+        .success {
+        color: limegreen;
+        border: 2px solid limegreen;
+}
+
+</style>
+
+
+{% extends "base.html"%}
+
+
+{%block content%}
+<h6>LOGIN TESTS</h6>
+</br></br></br></br>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% for category, message in messages %}
+    <div class="{{ category }}">{{ message }}</div>
+  {% endfor %}
+{% endwith %}
+
+
+
+{% if name %}
+    <b><h3> Hello {{name}}! How are you today? </h3></b>
+{% else %}
+    <b> <h3> Please enter your email and password below</h3> </b>
+    <br/>
+    <form method="POST">
+        {{form.hidden_tag()}}
+        {{form.email.label(class="form-label")}}<br/>
+        {{form.email(class="form-control")}}<br/>
+        {{form.password.label(class="form-label")}}<br/>
+        {{form.password(class="form-control")}}<br/>
+        {{form.submit(class="btn btn-outline-primary")}}
+    </form>
+
+
+{% endif %}
+<br/><br/>
+<p><b>Asistal Login Tests</b></p>
+<p><b>Stay healthy!</b></p>
+
+{%endblock%}

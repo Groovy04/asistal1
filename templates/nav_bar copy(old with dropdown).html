@@ -1,0 +1,63 @@
+<style>
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  position: fixed; /* Set the navbar to fixed position */
+  top: 0; /* Position the navbar at the top of the page */
+  width: 100%; /* Full width */
+}
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{{ url_for('index') }}" font><p class="text-danger" p style="font-size:15px;"><b>ASSIST</b> SYSTEM</p></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        {% if current_user.is_authenticated %}
+        <p style="color:green;"><b>You're logged into System.</b>
+              
+        {% else %}
+          <p style="color:red;"><b>You're not logged into System.</b></p>
+        
+    
+        {% endif %}
+        
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href=" {{ url_for('index') }} " >Home Page</a>
+          </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('sales_planned_entry') }}"><p style="color:green;">Sales Planned KPIs Entry</p></a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('sales_actual_entry') }}"><p style="color:green;">Sales Actual KPIs Entry</p></a>
+        </li>
+          <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Sales KPIs Screens
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="{{ url_for('sales_planned_entry') }}">Planned Sales KPIs Entry</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('sales_planned_entry') }}">Actual Sales KPIs Entry</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{{ url_for('sales_planned_entry') }}">Sales KPI Reports</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('login') }}"><p style="color:green;">Login</p></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('logout') }}"><p style="color:orangered;">Logout</p></a>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-primary" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>

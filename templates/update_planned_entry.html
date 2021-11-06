@@ -1,0 +1,58 @@
+
+{% extends "base.html"%}
+
+{%block content%}
+</br></br></br></br>
+{% for message in get_flashed_messages() %}
+<div class="alert alert-success" role="alert">{{message}}</div>
+{% endfor %}
+
+<p><h3> Updating Planned Sales KPIs Tests :</h3></p>
+
+{% if name %}
+    <b><h3> Hello {{name}}! This is UPDATING TESTS SALES KPIs </h3></b>
+
+    <p><b>Our records are as follows:</b></p>
+
+    <table class="table table-hover table-bordered table-striped table-dark">
+        {% for record in all_records %}
+            <tr>
+                <td>{{ record.id }}</td> <td>{{ record.month_planned_db }}</td> <td>{{ record.tot_vol_planned_db }}</td>
+            </tr>
+        {% endfor %}
+        
+        </table>
+
+{% else %}
+    <b> <h3> Updating record in this section... :) ##  test </h3> </b>
+    <br/>
+    <div class="shadow p-3 mb-5 bg-body rounded">
+    <form action="/update_planned_entry/{{ entry_to_update.id }}"  method="POST">
+        {{form.hidden_tag()}}
+                
+    <table>
+        <tr><td>{{form.tot_vol_planned.label(class="form-label")}}</td><td>{{form.tot_wood_finish_planned.label(class="form-label")}}</td></tr>
+        <tr><td>{{form.tot_vol_planned(class="form-control", value=entry_to_update.tot_vol_planned_db)}}</td><td> {{form.tot_wood_finish_planned(class="form-control", value=entry_to_update.tot_wood_finish_planned_db)}}</td></tr>
+        <tr><td>{{form.tot_mf_planned.label(class="form-label")}}</td><td> {{form.tot_crimping_planned.label(class="form-label")}}</td></tr>
+        <tr><td>{{form.tot_mf_planned(class="form-control", value=entry_to_update.tot_mf_planned_db)}} </td><td>{{form.tot_crimping_planned(class="form-control", value=entry_to_update.tot_crimping_planned_db)}}</td></tr>
+        <tr><td>{{form.tot_anodize_planned.label(class="form-label")}} </td><td>{{form.tot_EUR_planned.label(class="form-label")}}</td></tr>
+        <tr><td>{{form.tot_anodize_planned(class="form-control", value=entry_to_update.tot_anodize_planned_db)}} </td><td>{{form.tot_EUR_planned(class="form-control", value=entry_to_update.tot_EUR_planned_db)}}</td></tr>
+        <tr><td>{{form.tot_powder_coat_planned.label(class="form-label")}}</td><td> {{form.new_customers_planned.label(class="form-label")}}</td></tr>
+        <tr><td>{{form.tot_powder_coat_planned(class="form-control", value=entry_to_update.tot_powder_coat_planned_db)}} </td><td>{{form.new_customers_planned(class="form-control", value=entry_to_update.new_customers_planned_db)}}</td></tr>
+        <tr><td></td></tr>
+        <tr><td>{{form.submit(class="btn btn-outline-primary")}}&nbsp&nbsp&nbsp&nbsp&nbsp<a href="{{url_for('delete_planned',id=id)}}" button type="button" class="btn btn-danger">Delete This Entry</a></td></tr>
+    </table>
+    
+    </form>
+    </div>
+
+ 
+
+</table>
+
+{% endif %}
+<br/><br/>
+<p><b>Planned Sales KPI Update Screen Tests </b></p>
+
+
+{%endblock%}

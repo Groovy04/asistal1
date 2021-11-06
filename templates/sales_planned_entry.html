@@ -1,0 +1,108 @@
+<head>
+    <style>
+    
+        #myform {
+        width: 80%;
+    }
+        #mytable {
+        border-spacing: 0px;
+    }
+        .error {
+        color: red;
+        border: 2px solid red;
+}
+        .success {
+        color: limegreen;
+        border: 2px solid limegreen;
+}
+    </style>
+</head>
+
+{% extends "base.html"%}
+
+{%block content%}
+
+</br></br></br></br>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% for category, message in messages %}
+    <div class="{{ category }}">{{ message }}</div>
+  {% endfor %}
+{% endwith %}
+
+
+<p><h3> Assist System - Sales KPI in MT Form entry tests : Nov 21 </h3></p>
+
+{% if name %}
+    <b><h3> Hello {{name}}! This is a SQLAlchemy Test </h3></b>
+
+{% else %}
+    
+    <br/>
+    <div class="shadow p-3 mb-5 bg-body rounded">
+    <form method="POST">
+        <table style="width:100%", id="mytable">
+        {{form.hidden_tag()}}
+        <tr><td>{{form.month_planned.label(class="form-label")}}</td><td>{{form.year_planned.label(class="form-label")}}</td></tr>
+        <tr><td>{{form.month_planned(class="form-control")}}</td><td>{{form.year_planned(class="form-control")}}</td></tr>
+        <tr><td>{{form.tot_vol_planned.label(class="form-label")}}</td><td>{{form.tot_wood_finish_planned.label(class="form-label")}}</td></tr>
+        <tr><td>{{form.tot_vol_planned(class="form-control")}}</td><td> {{form.tot_wood_finish_planned(class="form-control")}}</td></tr>
+        <tr><td>{{form.tot_mf_planned.label(class="form-label")}}</td><td> {{form.tot_crimping_planned.label(class="form-label")}}</td></tr>
+        <tr><td>{{form.tot_mf_planned(class="form-control")}} </td><td>{{form.tot_crimping_planned(class="form-control")}}</td></tr>
+        <tr><td>{{form.tot_anodize_planned.label(class="form-label")}} </td><td>{{form.tot_EUR_planned.label(class="form-label")}}</td></tr>
+        <tr><td>{{form.tot_anodize_planned(class="form-control")}} </td><td>{{form.tot_EUR_planned(class="form-control")}}</td></tr>
+        <tr><td>{{form.tot_powder_coat_planned.label(class="form-label")}}</td><td> {{form.new_customers_planned.label(class="form-label")}}</td></tr>
+        <tr><td>{{form.tot_powder_coat_planned(class="form-control")}} </td><td>{{form.new_customers_planned(class="form-control")}}</td></tr>
+        <tr><td></td></tr>
+        <tr><td>{{form.submit(class="btn btn-outline-primary")}}</td></tr>
+        </table>
+    </form>
+    </div>
+
+<p><b>PLANNED : Main sales KPIs of the previously recorded months are seen below:</b></p>
+<table class="table table-hover table-bordered table-striped">
+
+    
+    <tr><th style="width:5%">db ID </th>
+        <th style="width:8%">UPDATE</th>
+        <th style="width:8%">DELETE</th>
+        <th style="width:8%">MONTH</th>
+        <th style="width:8%">MONTH ORDER</th>
+        <th style="width:8%">YEAR</th>
+        <th style="width:10%">TOT MT VOL</th>
+        <th style="width:10%">TOT MF.</th>
+        <th style="width:10%">TOT ANODIZE </th>
+        <th style="width:10%">TOT POW COA</th>
+        <th style="width:10%">TOT WOOD FIN</th>
+        <th style="width:10%">TOT CRIMP</th>
+        <th style="width:10%">TOT EUR</th>
+        <th style="width:10%">NEW CUST</th>
+    
+    </tr>
+        
+    {% for record in all_records %}
+    <tr>
+    <td>{{ record.id }}</td> <td><a href="{{url_for('update_planned',id=record.id)}}">Update</a></td>
+    <td><a href="{{url_for('delete_planned',id=record.id)}}">Delete</a></td>
+    <td>{{ record.month_planned_db }}</td>
+    <td>{{ record.month_order_db }}</td>
+    <td>{{ record.year_planned_db }}</td> 
+    <td>{{ record.tot_vol_planned_db }}</td>
+    <td>{{ record.tot_mf_planned_db }}</td>
+    <td>{{ record.tot_anodize_planned_db }}</td>
+    <td>{{ record.tot_powder_coat_planned_db }}</td>
+    <td>{{ record.tot_wood_finish_planned_db }}</td>
+    <td>{{ record.tot_crimping_planned_db }}</td>
+    <td>{{ record.tot_EUR_planned_db }}</td>
+    <td>{{ record.new_customers_planned_db }}</td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+{% endif %}
+<br/><br/>
+<p><b>Asistal - ASIST V001 - PLANNED SALES METRICS (MT) TESTS</b></p>
+
+
+{%endblock%}
